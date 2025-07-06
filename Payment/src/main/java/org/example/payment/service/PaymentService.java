@@ -1,20 +1,24 @@
 package org.example.payment.service;
 
+import lombok.extern.slf4j.Slf4j;
 import org.example.payment.model.Order;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
+@Slf4j
 @Service
 public class PaymentService {
 
     private final KafkaOrderProducer kafkaOrderProducer;
 
+
     public PaymentService(KafkaOrderProducer kafkaOrderProducer) {
         this.kafkaOrderProducer = kafkaOrderProducer;
     }
 
-    @KafkaListener(topics = "new_orders", groupId = "payment-group", containerFactory = "kafkaListenerContainerFactory")
+    @KafkaListener(topics = "${kafka.topic.new_orders}", groupId = "payment-group", containerFactory = "kafkaListenerContainerFactory")
     public void consumeNewOrder(Order order) {
+        log.info("Received order: {}", order);
         System.out.println("Получен заказ: " + order.getId());
 
         boolean paymentSuccess = processPayment(order);

@@ -12,12 +12,5 @@ public class Order {
     private int quantity;
     private boolean paid;
 
-    @Override
-    public String toString() {
-        return "Order [id=" + id + ", " +
-                "product=" + product + ", " +
-                "quantity=" + quantity + ", " +
-                "paid=" + paid;
-    }
 }
 

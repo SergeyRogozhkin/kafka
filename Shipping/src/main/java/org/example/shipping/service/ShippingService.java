@@ -1,5 +1,6 @@
 package org.example.shipping.service;
 
+import lombok.extern.slf4j.Slf4j;
 import org.example.shipping.model.Order;
 import org.example.shipping.model.OrderNotify;
 import org.springframework.kafka.annotation.KafkaListener;
@@ -7,7 +8,7 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-
+@Slf4j
 @Service
 public class ShippingService {
 
@@ -19,6 +20,7 @@ public class ShippingService {
 
     @KafkaListener(topics = "payed_orders", groupId = "shipping-group", containerFactory = "orderKafkaListenerContainerFactory")
     public void consumeOrder(Order order) {
+        log.info("Received order: {}", order);
         if (order.isPaid()) {
             System.out.println("Заказ оплачен, начинаем отгрузку: " + order.getId());
 
