@@ -1,0 +1,18 @@
+<!doctype html>
+<html>
+<body>
+<h2>Уведомления</h2>
+<ul id="notifications"></ul>
+
+<script>
+    const socket = new WebSocket("ws://localhost:8083/ws/notifications");
+    const list = document.getElementById("notifications");
+
+    socket.onmessage = event => {
+        const li = document.createElement("li");
+        li.textContent = event.data;
+        list.appendChild(li);
+    };
+</script>
+</body>
+</html>

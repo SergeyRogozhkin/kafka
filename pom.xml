@@ -16,7 +16,7 @@
         <module>Payment</module>
         <module>Shipping</module>
         <module>Notifications</module>
-            </modules>
+    </modules>
 
     <properties>
         <java.version>17</java.version>
@@ -25,6 +25,7 @@
 
     <dependencyManagement>
         <dependencies>
+            <!-- Общие зависимости для всех модулей -->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
@@ -36,13 +37,15 @@
     </dependencyManagement>
 
     <build>
-        <pluginManagement>
+        <pluginManagement> <!-- Просто определяет версии плагинов, не подключает их -->
             <plugins>
                 <plugin>
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-maven-plugin</artifactId>
+                    <version>${spring.boot.version}</version>
                 </plugin>
             </plugins>
         </pluginManagement>
     </build>
+
 </project>

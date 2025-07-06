@@ -8,9 +8,5 @@ public class OrdersApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(OrdersApplication.class, args);
-		System.out.println("s");
-		System.out.println("s");
-		System.out.println("s");
 	}
-
 }
